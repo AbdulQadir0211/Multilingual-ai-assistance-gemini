@@ -4,6 +4,13 @@ from dotenv import load_dotenv
 import os
 from gtts import gTTS
 
+import speech_recognition as sr
+from dotenv import load_dotenv
+import os
+from gtts import gTTS
+import google.generativeai as genai
+#import playsound
+
 print("perfect!!")
 load_dotenv()
 
@@ -33,6 +40,7 @@ def text_to_speech(text):
     
     #save the speech from the given text in the mp3 format
     tts.save("speech.mp3")
+    #playsound.playsound("speech.mp3")
 
 def llm_model_object(user_text):
     #model = "models/gemini-pro"
@@ -49,4 +57,8 @@ def llm_model_object(user_text):
     
     
     
-    
+if __name__ == "__main__":
+    user_text = voice_input()
+    if user_text:
+        ai_response = llm_model_object(user_text)
+        text_to_speech(ai_response)
